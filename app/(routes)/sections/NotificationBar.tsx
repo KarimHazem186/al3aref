@@ -34,11 +34,12 @@ const NotificationBar = () => {
         show ? 'translate-y-0' : '-translate-y-full'
       )}
     >
+      {/* 'text-xs sm:text-sm', */}
       <div
         className={clsx(
           'bg-red-900 text-white',
           'py-2 px-4 sm:px-6 md:px-8',
-          'text-xs sm:text-sm',
+          'text-[10px] sm:text-xs md:text-sm lg:text-base',
           'flex flex-wrap justify-center items-center gap-2',
           'overflow-x-auto whitespace-nowrap',
           'text-center'
@@ -47,14 +48,21 @@ const NotificationBar = () => {
         aria-label="Important shipping information"
       >
         <span>
-          Information on Paying Duties, Tariffs & Customs Fees on International Orders
+          Information on Paying  Tariffs & Customs Fees on International Orders
         </span>
-        <button
+        {/* <button
           className={button({ variant: 'underline', size: 'sm' })}
           aria-label="Learn more about duties and tariffs"
         >
           Learn More
-        </button>
+        </button> */}
+   <button
+  className="underline px-1 text-[8px] sm:text-xs md:text-sm lg:text-base"
+  aria-label="Learn more about duties and tariffs"
+>
+  Learn More
+</button>
+
       </div>
     </header>
   );
