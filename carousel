@@ -1,0 +1,127 @@
+// 'use client';
+
+// import React, { useState, useEffect } from 'react';
+
+// interface Slide {
+//   image: string;
+//   alt: string;
+//   captionTitle: string;
+//   captionDiscount: string;
+//   captionSub: string;
+//   captionDescription?: string;
+//   buttonText: string;
+//   buttonLink: string;
+// }
+
+// const slides: Slide[] = [
+//   {
+//     image: 'https://a.1stdibscdn.com/cms/CMS_GENERIC_IMAGE/1757629088_g6eh3/carousel_sale.jpg',
+//     alt: 'Fall Sale',
+//     captionTitle: 'Enjoy up to',
+//     captionDiscount: '40% Off',
+//     captionSub: 'FALL SALE IS GOING ON NOW',
+//     buttonText: 'SHOP THE SALE',
+//     buttonLink: '/sale',
+//   },
+//   {
+//     image: 'https://a.1stdibscdn.com/cms/CMS_GENERIC_IMAGE/1757438297_humrn/carousel_iconic.jpg',
+//     alt: 'Scandinavian Modern',
+//     captionTitle: 'Scandinavian',
+//     captionDiscount: 'Modern Spotlight',
+//     captionSub: 'FEATURED STYLE',
+//     captionDescription: 'From future heirlooms to unicorn pieces, shop new arrivals suffused with history and shaped by emerging trends.',
+//     buttonText: 'EXPLORE NOW',
+//     buttonLink: '/furniture/style/scandinavian-modern/',
+//   },
+//   {
+//     image: 'https://a.1stdibscdn.com/cms/CMS_GENERIC_IMAGE/1757438456_b2e7n/carousel_catalogue.jpg',
+//     alt: 'Fall Curation',
+//     captionTitle: 'New Curations',
+//     captionDiscount: 'for Fall',
+//     captionSub: 'JUST ARRIVED',
+//     buttonText: 'BROWSE CATALOG',
+//     buttonLink: '/collections/fall-catalogue/',
+//   },
+// ];
+
+// const Carousel: React.FC = () => {
+//   const [current, setCurrent] = useState<number>(0);
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setCurrent((prev) => (prev + 1) % slides.length);
+//     }, 6000);
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   return (
+//     <div className="relative w-full max-w-[1440px] mx-auto overflow-hidden py-12 mt-14 md:mt-16" style={{marginTop: '125px'}}>
+//       <div
+//         className="flex transition-transform duration-700 ease-in-out"
+//         style={{ transform: `translateX(-${current * 100}%)` }}
+//       >
+//         {slides.map((slide, index) => (
+//           <div
+//             key={index}
+//             className="min-w-full flex flex-col md:flex-row bg-[#f8f5eb]"
+//           >
+//             {/* Left: Image */}
+//             <div className="w-full md:w-1/2 p-6 flex items-center justify-center">
+//               <img
+//                 src={slide.image}
+//                 alt={slide.alt}
+//                 className="object-contain max-h-[300px] md:max-h-[500px] w-full"
+//               />
+//             </div>
+
+//             {/* Right: Text */}
+//             <div className="w-full md:w-1/2 flex flex-col justify-center items-center text-center px-6 py-10 md:px-10 md:py-16">
+//               <p className="text-base md:text-2xl tracking-widest uppercase text-gray-600 mb-2">
+//                 {slide.captionSub}
+//               </p>
+
+//               <h2 className="text-3xl md:text-6xl tracking-widest font-serif text-black mb-3">
+//                 {slide.captionTitle}
+//               </h2>
+
+//               <h1 className="text-3xl md:text-6xl tracking-widest font-serif text-black mb-4">
+//                 {slide.captionDiscount}
+//               </h1>
+
+//               {slide.captionDescription && (
+//                 <p className="text-sm md:text-base text-gray-700 mb-6 max-w-xl px-2 md:px-0">
+//                   {slide.captionDescription}
+//                 </p>
+//               )}
+
+//               <a
+//                 href={slide.buttonLink}
+//                 className="border border-black px-5 py-2 text-sm md:text-base text-black hover:bg-black hover:text-white transition"
+//               >
+//                 {slide.buttonText}
+//               </a>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+
+//       {/* Dots */}
+//       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3">
+//         {slides.map((_, index) => (
+//           <button
+//             key={index}
+//             onClick={() => setCurrent(index)}
+//             className={`w-3 h-3 cursor-pointer rounded-full border-2 transition duration-300 ease-in-out focus:outline-none ${
+//               index === current
+//                 ? 'bg-[#9b8c53] border-[#9b8c53]'
+//                 : 'bg-transparent border-gray-400'
+//             }`}
+//             aria-label={`Go to slide ${index + 1}`}
+//           />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Carousel;
