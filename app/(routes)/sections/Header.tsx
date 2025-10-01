@@ -908,7 +908,7 @@ const Header = ({ onCartClick }: HeaderProps) => {
                   </button>
 
                   {/* Mega Dropdown */}
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 min-w-[900px] bg-white border border-gray-200 shadow-xl z-50 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition duration-300">
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 min-w-[900px] bg-white border border-gray-200 shadow-xl z-50 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition duration-300">
                     {dropdown}
                   </div>
                 </div>
