@@ -50,18 +50,18 @@ const NotificationBar = () => {
         <span>
           Information on Paying  Tariffs & Customs Fees on International Orders
         </span>
-        {/* <button
-          className={button({ variant: 'underline', size: 'sm' })}
+        <button
+          className={button({ variant: 'underline', size: 'xs' })}
           aria-label="Learn more about duties and tariffs"
         >
           Learn More
-        </button> */}
-   <button
-  className="underline px-1 text-[8px] sm:text-xs md:text-sm lg:text-base"
+        </button>
+   {/* <button
+  className="underline px-1 text-[9px] sm:text-xs md:text-sm lg:text-base"
   aria-label="Learn more about duties and tariffs"
 >
   Learn More
-</button>
+</button> */}
 
       </div>
     </header>
