@@ -4,6 +4,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay,Navigation } from "swiper/modules";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 
 interface Slide {
@@ -50,10 +51,13 @@ const slides: Slide[] = [
 ];
 
 const Carousel: React.FC = () => {
+    const { lang } = useLanguage();
+
   return (
     <div className="relative w-full max-w-[1440px] mx-auto py-12 mt-14 md:mt-16" style={{ marginTop: "125px" }}>
-      <Swiper
+<Swiper
   modules={[Pagination, Autoplay, Navigation]}
+  dir={lang === "ar" ? "rtl" : "ltr"}   // 👈 force direction
   pagination={{
     clickable: true,
     renderBullet: (index, className) =>
@@ -66,9 +70,10 @@ const Carousel: React.FC = () => {
   className="overflow-hidden"
 >
 
+
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="min-w-full flex flex-col md:flex-row bg-[#f8f5eb]">
+            <div className="min-w-full flex flex-col md:flex-row h-[700px] md:h-[800px] lg:h-screen bg-[var(--secondaryLight)]">
               {/* Left: Image */}
               <div className="w-full md:w-1/2 p-6 flex items-center justify-center">
                 <img

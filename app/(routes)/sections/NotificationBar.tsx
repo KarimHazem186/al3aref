@@ -37,9 +37,9 @@ const NotificationBar = () => {
       {/* 'text-xs sm:text-sm', */}
       <div
         className={clsx(
-          'bg-red-900 text-white',
+          'bg-primary text-white',
           'py-2 px-4 sm:px-6 md:px-8',
-          'text-[10px] sm:text-xs md:text-sm lg:text-base',
+          'text-[10px] sm:text-xs md:text-sm lg:text-[12px]',
           'flex flex-wrap justify-center items-center gap-2',
           'overflow-x-auto whitespace-nowrap',
           'text-center'
@@ -56,13 +56,7 @@ const NotificationBar = () => {
         >
           Learn More
         </button>
-   {/* <button
-  className="underline px-1 text-[9px] sm:text-xs md:text-sm lg:text-base"
-  aria-label="Learn more about duties and tariffs"
->
-  Learn More
-</button> */}
-
+  
       </div>
     </header>
   );

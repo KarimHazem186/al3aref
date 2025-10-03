@@ -81,16 +81,13 @@ const NewArrivals = () => {
           spaceBetween={24}
           slidesPerView={1.2}
           loop={true}
-          speed={800} 
+          speed={800}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
-          breakpoints={swiperBreakpoints
-            
-          }
-
+          breakpoints={swiperBreakpoints}
           navigation={{
             prevEl: ".swiper-button-prev",
             nextEl: ".swiper-button-next",
@@ -100,46 +97,48 @@ const NewArrivals = () => {
         >
           {items.map((item, idx) => (
             <SwiperSlide key={idx}>
-            <div className="bg-white rounded-lg shadow-md relative
+              <div
+                className="bg-white rounded-lg shadow-md relative
                             transform transition-all duration-700 ease-in-out
-                            hover:scale-105 hover:shadow-xl">
-                            {/* Heart Icon */}
-                            <div className="absolute top-2 right-2 z-10">
-                              <button
-                                className="rounded-full p-1"
-                                aria-label="Save to favorites"
-                                type="button"
-                              >
-                                <svg
-                                  className="w-5 h-5 text-gray-300 hover:text-black transition-colors duration-300"
-                                  viewBox="0 0 250 250"
-                                  fill="currentColor"
-                                >
-                                  <path d="M29.3 129.8C22.8 121.3 1.6 92.1.4 72.4-.8 52.3 4.1 36.2 15 24.6 30.1 8.5 51.4 6.8 59.9 6.8c1.3 0 2.2 0 2.8.1 16.2.4 39.5 7.6 58.9 39.4l3.4 5.6 3.6-5.5c16.8-25.7 37.1-39 60.3-39.5 3 0 28.9-.9 48 20.6 7.2 8.1 15.1 22.5 12.5 45.6-1.9 16.9-16.2 39.3-24.3 50.4-11.8 16.1-88.5 108.3-100.2 122L29.3 129.8z" />
-                                </svg>
-                              </button>
-                            </div>
-            
-                            {/* Card content */}
-                            <a href={item.link}>
-                              <div className="overflow-hidden rounded-t-lg">
-                                <img
-                                  src={item.imageUrl}
-                                  alt={item.title}
-                                  className="w-full h-80 md:h-96 object-cover transition-transform duration-700 ease-in-out hover:scale-110"
-                                />
-                              </div>
-                              <div className="p-6">
-                                <h3 className="text-base md:text-lg font-medium text-gray-900 truncate">
-                                  {item.title}
-                                </h3>
-                                <p className="text-sm md:text-base font-semibold text-gray-600 mt-1">
-                                  {item.price}
-                                </p>
-                              </div>
-                            </a>
-                          </div>
-                        </SwiperSlide>
+                            hover:scale-105 hover:shadow-sm"
+              >
+                {/* Heart Icon */}
+                <div className="absolute top-2 right-2 z-10">
+                  <button
+                    className="rounded-full p-1"
+                    aria-label="Save to favorites"
+                    type="button"
+                  >
+                    <svg
+                      className="w-5 h-5 text-gray-300 hover:text-black transition-colors duration-300"
+                      viewBox="0 0 250 250"
+                      fill="currentColor"
+                    >
+                      <path d="M29.3 129.8C22.8 121.3 1.6 92.1.4 72.4-.8 52.3 4.1 36.2 15 24.6 30.1 8.5 51.4 6.8 59.9 6.8c1.3 0 2.2 0 2.8.1 16.2.4 39.5 7.6 58.9 39.4l3.4 5.6 3.6-5.5c16.8-25.7 37.1-39 60.3-39.5 3 0 28.9-.9 48 20.6 7.2 8.1 15.1 22.5 12.5 45.6-1.9 16.9-16.2 39.3-24.3 50.4-11.8 16.1-88.5 108.3-100.2 122L29.3 129.8z" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Card content */}
+                <a href={item.link}>
+                  <div className="h-[250px] flex items-center justify-center bg-gray-50 overflow-hidden rounded-t-lg">
+                    <img
+                      src={item.imageUrl}
+                      alt={item.title}
+                      className="max-h-full max-w-full object-contain transition-transform duration-700 ease-in-out group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-base md:text-lg font-medium text-gray-900 truncate">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm md:text-base font-semibold text-gray-600 mt-1">
+                      {item.price}
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </SwiperSlide>
           ))}
         </Swiper>
 

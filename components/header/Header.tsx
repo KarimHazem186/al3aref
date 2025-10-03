@@ -1,98 +1,299 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Search, Heart, ShoppingBag, Menu, Globe } from "lucide-react";
+import { Menu, Globe, X } from "lucide-react";
 import Logo from "./Logo";
-import DesktopNav from "./DesktopNav";
-import MobileSidebar from "./MobileSidebar";
+import { useRouter } from "next/navigation";
+import { useCart } from "../hooks/useCart";
+import SearchHeader from "./SearchDesktop";
+import HeaderActions from "./HeaderActions";
+import SearchMobile from "./SearchMobile";
+import FurnitureDropdown from "./dropdown/FurnitureDropdown";
+import LightingDropdown from "./dropdown/LightingDropdown";
+import DecorGiftsDropdown from "./dropdown/DecorGiftsDropdown";
+import ArtDropdown from "./dropdown/ArtDropdown";
+import JewelryDropdown from "./dropdown/JewelryDropdown";
+import WatchesDropdown from "./dropdown/WatchesDropdown";
+import FashionDropdown from "./dropdown/FashionDropdown";
+import WorldOf1stDibsDropdown from "./dropdown/WorldOf1stDibsDropdown";
+import { useLanguage } from "@/app/context/LanguageContext";
 
-const Header = () => {
+interface HeaderProps {
+  onCartClick: () => void;
+}
+
+const navigationItems = [
+  {
+    label: "NEW ARRIVALS",
+  },
+  {
+    label: "FURNITURE",
+    children: ["Sofas", "Chairs", "Tables", "Beds", "Storage"],
+    dropdown: <FurnitureDropdown />,
+  },
+  {
+    label: "LIGHTING",
+    children: ["Chandeliers", "Table Lamps", "Wall Lights"],
+    dropdown: <LightingDropdown />,
+  },
+  {
+    label: "DECOR & GIFTS",
+    children: ["Vases", "Mirrors", "Rugs", "Cushions"],
+    dropdown: <DecorGiftsDropdown />,
+  },
+  {
+    label: "ART",
+    children: ["Paintings", "Sculptures", "Photography"],
+    dropdown: <ArtDropdown />,
+  },
+  {
+    label: "JEWELRY",
+    children: ["Rings", "Necklaces", "Bracelets"],
+    dropdown: <JewelryDropdown />,
+  },
+  {
+    label: "WATCHES",
+    children: ["Luxury Watches", "Vintage Watches"],
+    dropdown: <WatchesDropdown />,
+  },
+  {
+    label: "FASHION",
+    children: ["Men", "Women", "Accessories"],
+    dropdown: <FashionDropdown />,
+  },
+  {
+    label: "WORLD OF 1STDIBS",
+    dropdown: <WorldOf1stDibsDropdown />,
+  },
+  {
+    label: "SALE",
+  },
+];
+
+const Header = ({ onCartClick }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const [cartItems, setCartItems] = useState<any[]>([]);
+
+  // const [lang, setLang] = useState<"en" | "ar">("en");
+
+    const { lang, setLang } = useLanguage();
+
+
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // scroll handler
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+
+  const toggleMenu = (label: string) => {
+    setOpenMenu(openMenu === label ? null : label);
+  };
+
+  const router = useRouter();
+  const { itemCount } = useCart();
+
+  const toggleLang = () => {
+    setLang(lang === "en" ? "ar" : "en");
+  };
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.documentElement.lang = lang;
+    }
+  }, [lang]);
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+
+      if (currentScrollY === 0) {
+        setShowNav(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // scrolling down
         setShowNav(false);
       } else {
+        // scrolling up
         setShowNav(true);
       }
+
       setLastScrollY(currentScrollY);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-white border-b border-gray-200">
+    <header
+      className={`fixed left-0 right-0 z-50 w-full bg-white border-b border-gray-200 transition-all  ${
+        showNav ? "top-[30px]" : "top-[0px]"
+      }`}
+    >
       <div className="container mx-auto px-4 py-3">
-        {/* Top Row */}
         <div className="flex items-center justify-between lg:relative">
-          {/* Mobile Menu */}
+          {/* Mobile menu icon */}
           <button
             onClick={() => setIsMenuOpen(true)}
             className="p-2 hover:bg-gray-100 rounded lg:hidden"
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="h-6 w-6 cursor-pointer" />
           </button>
 
-          {/* Desktop Search */}
-          <div className="hidden lg:flex flex-1">
-            <div className="relative inline-block w-full max-w-[220px] focus-within:max-w-[400px] transition-all duration-500">
-              <input
-                type="text"
-                placeholder="Search"
-                className="w-full pr-10 px-4 py-2 border border-gray-300 rounded bg-white text-sm focus:outline-none focus:ring-1 focus:ring-black"
-              />
-              <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-            </div>
-          </div>
+          {/* Desktop Search (left, expandable) */}
+          <SearchHeader />
 
-          {/* Logo */}
+          {/* Logo (center, fixed) */}
           <Logo />
 
-          {/* Right Actions */}
-          <div className="flex items-center gap-4 flex-shrink-0">
-            <div className="hidden lg:flex items-center gap-2 text-sm">
-              <button className="hover:underline">Log In</button>
-              <span className="text-gray-400">|</span>
-              <button className="hover:underline">Sign Up</button>
-              <button className="p-1 hover:bg-gray-100 rounded">
-                <Globe className="h-5 w-5" />
-              </button>
-            </div>
-            <button className="p-1 hover:bg-gray-100 rounded">
-              <Heart className="h-5 w-5" />
+          <HeaderActions
+            onCartClick={onCartClick}
+            // itemCount={cartItems.length}
+            itemCount={itemCount}
+            lang={lang}
+            toggleLang={toggleLang}
+          />
+        </div>
+
+        <SearchMobile />
+
+        {/* Desktop navigation */}
+        {showNav && (
+          <div className="hidden lg:flex items-center justify-center gap-8 mt-4 relative animate-fade-in">
+            <nav className="flex gap-8 relative hover:[&>div:not(:hover)]:opacity-50">
+              {navigationItems.map(({ label, dropdown }) => (
+                <div key={label} className="relative group transition-opacity duration-300">
+                  <button
+                    className={`text-sm font-medium px-2 py-2 transition-colors duration-300 ${
+                      label === "SALE"
+                        ? "text-secondary font-semibold hover:opacity-70 cursor-pointer"
+                        : "text-gray-700 hover:text-black hover:opacity-70 cursor-pointer"
+                    }`}
+                  >
+                    {label}
+                  </button>
+
+                  {dropdown && (
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 min-w-[900px] bg-white border border-gray-200 shadow-xl z-50 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition duration-300">
+                      {dropdown}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </nav>
+          </div>
+        )}
+
+        {/* Sidebar Menu (mobile only) */}
+        {/* Overlay */}
+        <div
+          className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 lg:hidden
+    ${isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+          onClick={() => setIsMenuOpen(false)}
+        ></div>
+
+        {/* Sidebar */}
+        <div
+          className={`fixed top-0 left-0 z-50 w-64 bg-white max-h-screen h-full shadow-md p-4 overflow-y-auto
+    transform transition-transform duration-300 ease-in-out
+    ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
+        >
+          <div className="flex justify-between items-center mb-6">
+            {/* <button className="p-1 hover:bg-gray-100 rounded text-xs flex items-center gap-1">
+              <Globe className="h-5 w-5" /> <span>EG</span> | $ USD
+            </button> */}
+            <div className="flex items-center gap-2">
+                <button
+                  onClick={toggleLang}
+                  className="p-1 hover:bg-gray-100 rounded flex items-center gap-1"
+                >
+                  <Globe className="h-5 w-5" />
+                  <span className="text-xs font-medium">
+                    {lang === "en" ? "EN" +  "  / QAR" : "ع" + "  / ر.ق"}
+                  </span>
+                </button>
+              </div>
+            <button
+              className="cursor-pointer"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <X className="h-6 w-6" />
             </button>
-            <button className="p-1 hover:bg-gray-100 rounded relative">
-              <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                0
-              </span>
+          </div>
+
+          <nav className="flex flex-col gap-3">
+            <p
+              className="d-block p-2 text-xs font-semibold"
+              style={{ backgroundColor: "#f1f1daff", fontWeight: "600" }}
+            >
+              CATEGORIES
+            </p>
+
+            {navigationItems.map(({ label, children }) => (
+              <div key={label}>
+                <button
+                  onClick={() => children && toggleMenu(label)}
+                  className={`flex justify-between items-center w-full text-left text-sm font-medium px-2 py-2 hover:bg-gray-100 rounded ${
+                    label === "SALE"
+                      ? "text-primary font-semibold"
+                      : "text-gray-700"
+                  }`}
+                >
+                  {label}
+                  {children && (
+                    <span className="text-xs">
+                      {openMenu === label ? "−" : "+"}
+                    </span>
+                  )}
+                </button>
+
+                {children && (
+                  <ul
+                    className={`pl-6 mt-1 space-y-1 text-sm text-gray-600 
+                    overflow-hidden transition-all duration-300 ease-in-out
+                    ${openMenu === label ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
+                  >
+                    {children.map((child) => (
+                      <li
+                        key={child}
+                        className="py-1 px-2 hover:bg-gray-100 rounded cursor-pointer"
+                      >
+                        {child}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </nav>
+
+          <hr className="my-3" />
+
+          <p
+            className="d-block p-2 text-xs font-semibold"
+            style={{ backgroundColor: "#f1f1daff", fontWeight: "600" }}
+          >
+            ACCOUNT
+          </p>
+
+          <div className="flex items-center justify-center gap-2 text-sm pb-10">
+            <button
+              onClick={() => router.push("/login")}
+              className="border py-1 px-6 mt-2 hover:bg-black hover:text-white transition duration-300"
+            >
+              LOGIN
+            </button>
+            <span className="text-gray-400">|</span>
+            <button
+              onClick={() => router.push("/signup")}
+              className="border py-1 px-6 mt-2 hover:bg-black hover:text-white transition duration-300"
+            >
+              REGISTER
             </button>
           </div>
         </div>
-
-        {/* Mobile Search */}
-        <div className="mt-3 lg:hidden flex justify-center">
-          <div className="relative w-full max-w-md">
-            <input
-              type="text"
-              placeholder="Search"
-              className="w-full pr-10 px-4 py-2 border border-gray-300 rounded bg-white text-sm focus:outline-none focus:ring-1 focus:ring-black"
-            />
-            <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-          </div>
-        </div>
-
-        {/* Desktop Navigation */}
-        <DesktopNav showNav={showNav} />
-
-        {/* Mobile Sidebar */}
-        {isMenuOpen && <MobileSidebar onClose={() => setIsMenuOpen(false)} />}
       </div>
     </header>
   );

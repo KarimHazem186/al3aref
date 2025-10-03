@@ -96,9 +96,11 @@ const EditorsPicks = () => {
         >
           {items.map((item, idx) => (
             <SwiperSlide key={idx}>
-<div className=" bg-white rounded-lg shadow-md relative
+              <div
+                className=" bg-white rounded-lg shadow-md relative
                 transform transition-all duration-700 ease-in-out
-                hover:scale-105 hover:shadow-xl">
+                hover:scale-105 hover:shadow-sm"
+              >
                 {/* Heart Icon */}
                 <div className="absolute top-2 right-2 z-10">
                   <button
@@ -118,13 +120,14 @@ const EditorsPicks = () => {
 
                 {/* Card content */}
                 <a href={item.link}>
-                  <div className="overflow-hidden rounded-t-lg">
+                  <div className="h-[250px] flex items-center justify-center bg-gray-50 overflow-hidden rounded-t-lg">
                     <img
                       src={item.imageUrl}
                       alt={item.title}
-                      className="w-full h-80 md:h-96 object-cover transition-transform duration-700 ease-in-out hover:scale-110"
+                      className="max-h-full max-w-full object-contain transition-transform duration-700 ease-in-out group-hover:scale-105"
                     />
                   </div>
+
                   <div className="p-6">
                     <h3 className="text-base md:text-lg font-medium text-gray-900 truncate">
                       {item.title}

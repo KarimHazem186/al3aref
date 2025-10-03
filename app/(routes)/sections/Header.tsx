@@ -792,8 +792,8 @@ const Header = ({ onCartClick }: HeaderProps) => {
 
   return (
     <header
-      className={`fixed left-0 right-0 z-50 w-full bg-white border-b border-gray-200 transition-all duration-300 ${
-        showNav ? "top-[40px]" : "top-[0px]"
+      className={`fixed left-0 right-0 z-50 w-full bg-white border-b border-gray-200 transition-all  ${
+        showNav ? "top-[30px]" : "top-[0px]"
       }`}
     >
       {" "}
