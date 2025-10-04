@@ -108,7 +108,7 @@ const SidebarFilter = () => {
         </div>
 
         {/* PRICE RANGE */}
-        {/* <div className="border border-gray-300 rounded-md overflow-hidden">
+        <div className="border border-gray-300 rounded-md overflow-hidden">
           <button
             onClick={() => setIsPriceOpen(!isPriceOpen)}
             className="flex justify-between items-center w-full px-3 py-2 bg-gray-50 border-b hover:bg-gray-100 transition-colors"
@@ -152,10 +152,10 @@ const SidebarFilter = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
               
               {/* ORRRRRRRRRRRRR */}
-        <div className="border border-gray-300 rounded-md overflow-hidden">
+        {/* <div className="border border-gray-300 rounded-md overflow-hidden">
   <button
     onClick={() => setIsPriceOpen(!isPriceOpen)}
     className="flex justify-between items-center w-full px-3 py-2 bg-gray-50 border-b hover:bg-gray-100 transition-colors"
@@ -204,7 +204,7 @@ const SidebarFilter = () => {
     </div>
   </div>
         </div>
-              
+               */}
               {/* ORRRRRRRRRRRRR */}
           {/* <PriceFilter />       */}
               
