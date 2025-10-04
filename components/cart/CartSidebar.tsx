@@ -8,17 +8,21 @@ import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { CartItem } from "./CartItem";
 import { Separator } from "../ui/separator";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 interface CartSidebarProps {
   isOpen: boolean;
   onClose: () => void;
-  // onCheckout: () => void;
+  // onCheckout?: () => void;
 }
 
-export function CartSidebar({ isOpen, onClose/*, onCheckout */}: CartSidebarProps) {
+export function CartSidebar({ isOpen, onClose /*, onCheckout */ }: CartSidebarProps) {
   const { cart, cartTotal, itemCount } = useCart();
   const [discountCode, setDiscountCode] = useState("");
   const [appliedDiscount, setAppliedDiscount] = useState<{ code: string; percentage: number } | null>(null);
+
+  const { lang } = useLanguage();
+  const isRTL = lang === "ar";
 
   const handleApplyDiscount = () => {
     const code = discountCode.toUpperCase();
@@ -32,13 +36,17 @@ export function CartSidebar({ isOpen, onClose/*, onCheckout */}: CartSidebarProp
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <SheetContent side="right" className="w-[80%]  sm:max-w-md flex flex-col">
+      <SheetContent
+        side={isRTL ? "left" : "right"}
+        dir={isRTL ? "rtl" : "ltr"}
+        className="w-[80%] sm:max-w-md flex flex-col"
+      >
         <SheetHeader>
-          <SheetTitle className="flex items-center gap-2">
+          <SheetTitle className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
             <ShoppingCart className="h-5 w-5" />
             Shopping Cart
             {itemCount > 0 && (
-              <Badge className="ml-auto bg-secondary text-white px-2 py-1 rounded-lg">
+              <Badge className={`${isRTL ? "mr-auto" : "ml-auto"} bg-secondary text-white px-2 py-1 rounded-lg`}>
                 {itemCount} {itemCount === 1 ? "item" : "items"}
               </Badge>
             )}
@@ -47,9 +55,13 @@ export function CartSidebar({ isOpen, onClose/*, onCheckout */}: CartSidebarProp
 
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {cart.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
+            <div
+              className={`flex flex-col items-center justify-center h-full space-y-4 ${
+                isRTL ? "text-right" : "text-center"
+              }`}
+            >
               <ShoppingCart className="h-16 w-16 text-muted-foreground" />
-              <div>
+              <div className="text-center">
                 <h3 className="font-semibold text-lg mb-1">Your cart is empty</h3>
                 <p className="text-muted-foreground text-sm">Add some products to get started!</p>
               </div>
@@ -73,7 +85,7 @@ export function CartSidebar({ isOpen, onClose/*, onCheckout */}: CartSidebarProp
               <label htmlFor="discount-code" className="text-sm font-medium">
                 Discount Code
               </label>
-              <div className="flex gap-2">
+              <div className={`flex gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
                 <input
                   id="discount-code"
                   type="text"
@@ -103,33 +115,37 @@ export function CartSidebar({ isOpen, onClose/*, onCheckout */}: CartSidebarProp
 
             {/* Totals */}
             <div className="px-4 space-y-2">
-              <div className="flex justify-between text-sm">
+              <div className={`flex justify-between text-sm ${isRTL ? "flex-row-reverse" : ""}`}>
                 <span>Subtotal</span>
                 <span>${cartTotal.toFixed(2)}</span>
               </div>
               {discountAmount > 0 && (
-                <div className="flex justify-between text-sm text-green-600">
+                <div className={`flex justify-between text-sm text-green-600 ${isRTL ? "flex-row-reverse" : ""}`}>
                   <span>Discount ({appliedDiscount?.code})</span>
                   <span>-${discountAmount.toFixed(2)}</span>
                 </div>
               )}
-              <div className="flex justify-between text-sm text-muted-foreground">
+              <div className={`flex justify-between text-sm text-muted-foreground ${isRTL ? "flex-row-reverse" : ""}`}>
                 <span>Shipping</span>
                 <span>Calculated at checkout</span>
               </div>
               <Separator />
-              <div className="flex justify-between font-semibold text-lg">
+              <div className={`flex justify-between font-semibold text-lg ${isRTL ? "flex-row-reverse" : ""}`}>
                 <span>Total</span>
                 <span>${finalTotal.toFixed(2)}</span>
               </div>
             </div>
 
-            <Button /*onClick={onCheckout}*/ className="w-full py-4 mt-2 flex items-center justify-center" size="lg">
+            <Button
+              /*onClick={onCheckout}*/
+              className="w-full py-4 mt-2 flex items-center justify-center"
+              size="lg"
+            >
               Proceed to Checkout
-              <ArrowRight className="h-4 w-4 ml-2" />
+              <ArrowRight className={`h-4 w-4 ml-2 ${isRTL ? "mr-2 ml-0" : ""}`} />
             </Button>
 
-            <p className="py-2 text-xs text-muted-foreground text-center">
+            <p className={`py-2 text-xs text-muted-foreground text-center ${isRTL ? "text-right" : ""}`}>
               Secure checkout with Cash on Delivery available
             </p>
           </div>

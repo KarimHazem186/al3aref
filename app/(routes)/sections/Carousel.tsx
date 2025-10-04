@@ -1,11 +1,9 @@
-
 "use client";
 
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay,Navigation } from "swiper/modules";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import { useLanguage } from "@/app/context/LanguageContext";
-
 
 interface Slide {
   image: string;
@@ -20,7 +18,8 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    image: "https://a.1stdibscdn.com/cms/CMS_GENERIC_IMAGE/1757629088_g6eh3/carousel_sale.jpg",
+    image:
+      "https://a.1stdibscdn.com/cms/CMS_GENERIC_IMAGE/1757629088_g6eh3/carousel_sale.jpg",
     alt: "Fall Sale",
     captionTitle: "Enjoy up to",
     captionDiscount: "40% Off",
@@ -29,7 +28,8 @@ const slides: Slide[] = [
     buttonLink: "/sale",
   },
   {
-    image: "https://a.1stdibscdn.com/cms/CMS_GENERIC_IMAGE/1757438297_humrn/carousel_iconic.jpg",
+    image:
+      "https://a.1stdibscdn.com/cms/CMS_GENERIC_IMAGE/1757438297_humrn/carousel_iconic.jpg",
     alt: "Scandinavian Modern",
     captionTitle: "Scandinavian",
     captionDiscount: "Modern Spotlight",
@@ -40,7 +40,8 @@ const slides: Slide[] = [
     buttonLink: "/furniture/style/scandinavian-modern/",
   },
   {
-    image: "https://a.1stdibscdn.com/cms/CMS_GENERIC_IMAGE/1757438456_b2e7n/carousel_catalogue.jpg",
+    image:
+      "https://a.1stdibscdn.com/cms/CMS_GENERIC_IMAGE/1757438456_b2e7n/carousel_catalogue.jpg",
     alt: "Fall Curation",
     captionTitle: "New Curations",
     captionDiscount: "for Fall",
@@ -51,26 +52,28 @@ const slides: Slide[] = [
 ];
 
 const Carousel: React.FC = () => {
-    const { lang } = useLanguage();
+  const { lang } = useLanguage();
 
   return (
-    <div className="relative w-full max-w-[1440px] mx-auto py-12 mt-14 md:mt-16" style={{ marginTop: "125px" }}>
-<Swiper
-  modules={[Pagination, Autoplay, Navigation]}
-  dir={lang === "ar" ? "rtl" : "ltr"}   // 👈 force direction
-  pagination={{
-    clickable: true,
-    renderBullet: (index, className) =>
-      `<span class="${className} w-3 h-3 mx-1 rounded-full border border-gray-400 bg-transparent transition-all duration-300"></span>`,
-  }}
-  navigation
-  autoplay={{ delay: 6000, disableOnInteraction: false }}
-  loop
-  speed={700}
-  className="overflow-hidden"
->
-
-
+    <div
+      className="relative w-full max-w-[1440px] mx-auto py-12 mt-14 md:mt-16"
+      style={{ marginTop: "125px" }}
+    >
+      <Swiper
+        key={lang}
+        modules={[Pagination, Autoplay, Navigation]}
+        dir={lang === "ar" ? "rtl" : "ltr"}
+        pagination={{
+          clickable: true,
+          renderBullet: (index, className) =>
+            `<span class="${className} w-3 h-3 mx-1 rounded-full border border-gray-400 bg-transparent transition-all duration-300"></span>`,
+        }}
+        navigation
+        autoplay={{ delay: 6000, disableOnInteraction: false }}
+        loop
+        speed={700}
+        className="overflow-hidden"
+      >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="min-w-full flex flex-col md:flex-row h-[700px] md:h-[800px] lg:h-screen bg-[var(--secondaryLight)]">
@@ -119,5 +122,3 @@ const Carousel: React.FC = () => {
 };
 
 export default Carousel;
-
-
