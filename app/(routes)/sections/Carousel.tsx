@@ -108,7 +108,7 @@ const Carousel: React.FC = () => {
 
                 <a
                   href={slide.buttonLink}
-                  className="border border-black px-5 py-2 text-sm md:text-base text-black hover:bg-black hover:text-white transition"
+                  className="border border-primary px-5 py-2 text-sm md:text-base text-black hover:bg-primary hover:text-white transition"
                 >
                   {slide.buttonText}
                 </a>

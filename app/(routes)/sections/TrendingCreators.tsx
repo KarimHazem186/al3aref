@@ -81,7 +81,7 @@ const creators = [
 const TrendingCreators: React.FC = () => {
   return (
     <section className="py-12 bg-[#f3f3f3]">
-      <h2 className="text-center text-2xl sm:text-3xl font-serif font-medium text-gray-900 mb-12">
+      <h2 className="text-center text-2xl sm:text-3xl font-serif font-medium text-primary mb-12">
         Trending Creators
       </h2>
 

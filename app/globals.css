@@ -126,6 +126,14 @@
   border-color: #9b8c53 !important;
   transform: scale(1.2); 
 }
+.swiper-navigation-icon {
+  color:var(--primary) !important;
+  transition: color 0.3s ease;
+}
+
+.swiper-navigation-icon {
+  color: var(--primary);
+}
 
 
 .swiper-pagination {
@@ -156,8 +164,13 @@
   stroke-width: 2 !important;
   color: var(--color-foreground);
 }
-
-
+/* 
+.loading {
+  background-image: url("./assets/pattern/Pattern_1.png");
+  background-size: cover;       
+  background-repeat: no-repeat;
+  background-position: center; 
+} */
 
 
 @keyframes marquee {
@@ -179,3 +192,5 @@
     @apply bg-background text-foreground;
   }
 }
+
+

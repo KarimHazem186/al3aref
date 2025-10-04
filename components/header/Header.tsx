@@ -79,8 +79,7 @@ const Header = ({ onCartClick }: HeaderProps) => {
 
   // const [lang, setLang] = useState<"en" | "ar">("en");
 
-    const { lang, setLang } = useLanguage();
-
+  const { lang, setLang } = useLanguage();
 
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -164,7 +163,10 @@ const Header = ({ onCartClick }: HeaderProps) => {
           <div className="hidden lg:flex items-center justify-center gap-8 mt-4 relative animate-fade-in">
             <nav className="flex gap-8 relative hover:[&>div:not(:hover)]:opacity-50">
               {navigationItems.map(({ label, dropdown }) => (
-                <div key={label} className="relative group transition-opacity duration-300">
+                <div
+                  key={label}
+                  className="relative group transition-opacity duration-300"
+                >
                   <button
                     className={`text-sm font-medium px-2 py-2 transition-colors duration-300 ${
                       label === "SALE"
@@ -173,10 +175,12 @@ const Header = ({ onCartClick }: HeaderProps) => {
                     }`}
                   >
                     {label}
+
+                    <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                   </button>
 
                   {dropdown && (
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 min-w-[900px] bg-white border border-gray-200 shadow-xl z-50 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition duration-300">
+                    <div className="absolute top-full ml-10 left-1/2 mt-1 transform -translate-x-1/2 min-w-[900px] bg-white border border-gray-200 shadow-xl z-50 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition duration-300">
                       {dropdown}
                     </div>
                   )}
@@ -196,7 +200,7 @@ const Header = ({ onCartClick }: HeaderProps) => {
 
         {/* Sidebar */}
         <div
-          className={`fixed top-0 left-0 z-50 w-64 bg-white max-h-screen h-full shadow-md p-4 overflow-y-auto
+          className={`fixed top-0 left-0 z-50 w-74 bg-white max-h-screen h-full shadow-md p-4 overflow-y-auto
     transform transition-transform duration-300 ease-in-out
     ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
         >
@@ -205,16 +209,16 @@ const Header = ({ onCartClick }: HeaderProps) => {
               <Globe className="h-5 w-5" /> <span>EG</span> | $ USD
             </button> */}
             <div className="flex items-center gap-2">
-                <button
-                  onClick={toggleLang}
-                  className="p-1 hover:bg-gray-100 rounded flex items-center gap-1"
-                >
-                  <Globe className="h-5 w-5" />
-                  <span className="text-xs font-medium">
-                    {lang === "en" ? "EN" +  "  / QAR" : "ع" + "  / ر.ق"}
-                  </span>
-                </button>
-              </div>
+              <button
+                onClick={toggleLang}
+                className="p-1 hover:bg-gray-100 rounded flex items-center gap-1"
+              >
+                <Globe className="h-5 w-5" />
+                <span className="text-xs font-medium">
+                  {lang === "en" ? "EN" + "  / QAR" : "ع" + "  / ر.ق"}
+                </span>
+              </button>
+            </div>
             <button
               className="cursor-pointer"
               onClick={() => setIsMenuOpen(false)}
@@ -253,7 +257,11 @@ const Header = ({ onCartClick }: HeaderProps) => {
                   <ul
                     className={`pl-6 mt-1 space-y-1 text-sm text-gray-600 
                     overflow-hidden transition-all duration-300 ease-in-out
-                    ${openMenu === label ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
+                    ${
+                      openMenu === label
+                        ? "max-h-40 opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
                   >
                     {children.map((child) => (
                       <li
@@ -278,17 +286,17 @@ const Header = ({ onCartClick }: HeaderProps) => {
             ACCOUNT
           </p>
 
-          <div className="flex items-center justify-center gap-2 text-sm pb-10">
+          <div className="flex items-center justify-center gap-2 text-sm pb-10 p-1">
             <button
               onClick={() => router.push("/login")}
-              className="border py-1 px-6 mt-2 hover:bg-black hover:text-white transition duration-300"
+              className="border py-1 px-6 mt-2 cursor-pointer hover:bg-primary hover:text-white transition duration-300"
             >
               LOGIN
             </button>
             <span className="text-gray-400">|</span>
             <button
               onClick={() => router.push("/signup")}
-              className="border py-1 px-6 mt-2 hover:bg-black hover:text-white transition duration-300"
+              className="border py-1  px-6 mt-2 cursor-pointer hover:bg-primary hover:text-white transition duration-300"
             >
               REGISTER
             </button>

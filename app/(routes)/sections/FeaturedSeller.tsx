@@ -56,7 +56,7 @@ const FeaturedSeller = () => {
           Handcrafted. Inspired by Bauhaus. <br />
           Designed by <span className="font-medium">Kateryna Sokolova.</span>
         </h2>
-        <button className="border rounded border-black px-6 py-3 text-sm tracking-widest hover:bg-black hover:text-white transition">
+        <button className="border rounded border-primary px-6 py-3 text-sm tracking-widest hover:bg-primary hover:text-white transition cursor-pointer">
           DISCOVER MORE
         </button>
       </div>

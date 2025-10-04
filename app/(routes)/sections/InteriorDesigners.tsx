@@ -29,7 +29,7 @@ const InteriorDesigners = () => {
   return (
     <section className="px-6 py-12 bg-white">
       <h2
-        className="text-3xl font-serif mb-8 text-gray-800"
+        className="text-3xl font-serif mb-8 text-primary"
         style={{
           fontFamily: `"Cardinal Classic Short", Georgia, serif`,
         }}

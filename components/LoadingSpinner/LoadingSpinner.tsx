@@ -13,6 +13,9 @@ const LoadingSpinner = () => {
   }, []);
 
   return (
+    // <div className="loading">
+
+    
     <AnimatePresence>
       {loading && (
         <motion.div
@@ -68,7 +71,9 @@ const LoadingSpinner = () => {
           </motion.p>
         </motion.div>
       )}
-    </AnimatePresence>
+      </AnimatePresence>
+      
+      // </div>
   );
 };
 

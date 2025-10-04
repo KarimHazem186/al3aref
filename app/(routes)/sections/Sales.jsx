@@ -85,7 +85,7 @@ const Sales = () => {
         <p className="italic text-gray-700 mb-2 text-xl">
           Limited Time Savings
         </p>
-        <h2 className="text-4xl font-light text-gray-900">
+        <h2 className="text-3xl font-light text-primary">
           Sale: <span className="font-medium">Up to 40% Off</span>
         </h2>
       </div>
