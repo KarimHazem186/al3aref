@@ -164,6 +164,15 @@
   stroke-width: 2 !important;
   color: var(--color-foreground);
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* 
 .loading {
   background-image: url("./assets/pattern/Pattern_1.png");

@@ -27,7 +27,7 @@ const designers = [
 
 const InteriorDesigners = () => {
   return (
-    <section className="px-6 py-12 bg-white">
+    <section className="px-6 pb-18 bg-white">
       <h2
         className="text-3xl font-serif mb-8 text-primary"
         style={{

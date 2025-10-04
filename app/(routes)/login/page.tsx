@@ -16,7 +16,7 @@ export default function Page() {
                 <img src='./assets/image.png' alt="Logo" className="Logo" />
             </div>
         {/* Title */}
-        <h2 className="text-2xl font-bold text-center mb-8">Login</h2>
+        <h2 className="text-2xl font-bold text-center text-primary mb-8">Login</h2>
 
         {/* Form */}
         <form className="space-y-5">
@@ -54,7 +54,7 @@ export default function Page() {
           {/* Login button */}
           <button
             type="submit"
-            className="w-full py-3 bg-[#4B5D47] text-white rounded-md font-semibold hover:opacity-90 transition"
+            className="w-full py-3 bg-primary text-white rounded-md font-semibold hover:opacity-90 transition"
           >
             Login
           </button>
@@ -69,10 +69,10 @@ export default function Page() {
 
         {/* Social login */}
         <div className="space-y-3">
-          <button className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 rounded-md hover:bg-gray-50 transition">
+          <button className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 rounded-md hover:bg-gray-100 transition">
             <FcGoogle size={20} /> Continue with Google
           </button>
-          <button className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 rounded-md hover:bg-gray-50 transition">
+          <button className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 rounded-md hover:bg-gray-100 transition">
             <FaFacebookF className="text-[#4267B2]" size={18} /> Continue with Facebook
           </button>
         </div>
@@ -80,7 +80,7 @@ export default function Page() {
         {/* Signup */}
         <p className="text-center text-sm text-gray-600 mt-6">
           don’t have account?{" "}
-          <Link href="/signup" className="font-semibold hover:underline">
+          <Link href="/signup" className="font-semibold text-primary hover:underline">
             Signup
           </Link>
         </p>

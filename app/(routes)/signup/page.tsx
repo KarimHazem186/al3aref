@@ -19,7 +19,7 @@ export default function Page() {
         </div>
 
         {/* Title */}
-        <h2 className="text-2xl font-bold text-center mb-8">Sign Up</h2>
+        <h2 className="text-2xl font-bold text-center text-primary mb-8">Sign Up</h2>
 
         {/* Form */}
         <form className="space-y-5">
@@ -61,13 +61,7 @@ export default function Page() {
               placeholder="Password"
               className="w-full pl-10 pr-3 py-3 text-sm border border-gray-300 rounded-md focus:ring-1 focus:ring-gray-400 outline-none"
             />
-            {/* <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-500"
-            >
-              {showPassword ? "Hide" : "Show"}
-            </button> */}
+            
           </div>
 
           {/* Confirm Password */}
@@ -78,19 +72,13 @@ export default function Page() {
               placeholder="Confirm Password"
               className="w-full pl-10 pr-3 py-3 text-sm border border-gray-300 rounded-md focus:ring-1 focus:ring-gray-400 outline-none"
             />
-            {/* <button
-              type="button"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-500"
-            >
-              {showConfirmPassword ? "Hide" : "Show"}
-            </button> */}
+            
           </div>
 
           {/* Signup button */}
           <button
             type="submit"
-            className="w-full py-3 bg-[#4B5D47] text-white rounded-md font-semibold hover:opacity-90 transition"
+            className="w-full py-3 bg-primary text-white rounded-md font-semibold hover:opacity-90 transition"
           >
             Create Account
           </button>
@@ -105,10 +93,10 @@ export default function Page() {
 
         {/* Social signup */}
         <div className="space-y-3">
-          <button className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 rounded-md hover:bg-gray-50 transition">
+          <button className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 rounded-md hover:bg-gray-100 transition">
             <FcGoogle size={20} /> Continue with Google
           </button>
-          <button className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 rounded-md hover:bg-gray-50 transition">
+          <button className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 rounded-md hover:bg-gray-100 transition">
             <FaFacebookF className="text-[#4267B2]" size={18} /> Continue with Facebook
           </button>
         </div>
@@ -116,7 +104,7 @@ export default function Page() {
         {/* Login link */}
         <p className="text-center text-sm text-gray-600 mt-6">
           Already have an account?{" "}
-          <Link href="/login" className="font-semibold hover:underline">
+          <Link href="/login" className="font-semibold text-primary hover:underline">
             Login
           </Link>
         </p>

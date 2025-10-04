@@ -16,6 +16,7 @@ import NewArrivals from "./sections/NewArrivals";
 import TrendingCreators from "./sections/TrendingCreators";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import { CartSidebar } from "@/components/cart/CartSidebar";
+import Categories from "./sections/Categories";
 
 
 const Page = () => {
@@ -39,6 +40,7 @@ const Page = () => {
         <EditorsPicks />
         <Sales />
         <FeaturedSeller />
+        <Categories />
         <InteriorDesigners />
         <Promise />
         <NewArrivals />

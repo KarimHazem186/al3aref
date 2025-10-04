@@ -108,7 +108,7 @@ const EditorsPicks = () => {
                     type="button"
                   >
                     <svg
-                      className="w-5 h-5 text-gray-300 hover:text-primary transition-colors duration-300"
+                      className="w-5 h-5 text-gray-300 hover:text-red-600 transition-colors duration-300"
                       viewBox="0 0 250 250"
                       fill="currentColor"
                     >

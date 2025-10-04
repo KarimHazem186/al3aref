@@ -19,11 +19,11 @@ const products = {
 const DealsSection = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
-      <div className="bg-[#FFF1DC] p-4 rounded-lg">
+      <div className="bg-secondary p-4 rounded-lg">
         <h2 className="text-center text-2xl font-semibold italic mb-4 text-primary">Super Deals</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {products.superDeals.map((p, idx) => (
-            <div key={idx} className="bg-[#FFF9F1] p-4 rounded-lg shadow-sm">
+            <div key={idx} className="bg-white p-4 rounded-lg shadow-sm">
               <span className="bg-green-200 text-green-900 text-xs px-2 py-1 rounded font-medium">
                 Furniture
               </span>
@@ -38,11 +38,11 @@ const DealsSection = () => {
         </div>
       </div>
 
-      <div className="bg-yellow-100 p-4 rounded-lg">
+      <div className="bg-secondary p-4 rounded-lg">
         <h2 className="text-center text-2xl font-semibold italic mb-4 text-primary">Mega Deals</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {products.megaDeals.map((p, idx) => (
-            <div key={idx} className="bg-yellow-50 p-4 rounded-lg shadow-sm">
+            <div key={idx} className="bg-white p-4 rounded-lg shadow-sm">
               <span className="bg-green-200 text-green-900 text-xs px-2 py-1 rounded font-medium">
                 Furniture
               </span>
